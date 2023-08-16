@@ -30,7 +30,7 @@ function App() {
           <Navigation />
           <Switch>
             <Route exact path="/" component={HomePage} />
-            <Route exact path="/home" component={HomePage} />
+            {/* <Route exact path="/home" component={HomePage} />
             <Route exact path="/login" component={Login} />
             <Route exact path="/register" component={Register} />
             <Route exact path="/movies" component={Movies} />
@@ -47,10 +47,11 @@ function App() {
               <Review></Review>
             </PrivateRoute>
 
-         <PrivateRoute exact path="/payment">
+            {/* <PrivateRoute exact path="/payment">
               <Payment></Payment>
-            </PrivateRoute>
+            </PrivateRoute> */}
 
+            {/*
             <PrivateRoute exact path="/payment/:orderId">
               <Payment></Payment>
             </PrivateRoute>
@@ -75,7 +76,7 @@ function App() {
               <DeleteProduct></DeleteProduct>
             </AdminRoute>
 
-            <Route path="*" component={NotFound} /> 
+            <Route path="*" component={NotFound} /> */}
           </Switch>
           <Footer />
         </Router>

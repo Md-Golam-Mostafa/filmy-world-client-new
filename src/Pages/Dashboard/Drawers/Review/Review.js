@@ -1,6 +1,6 @@
 import axios from 'axios';
 import React, { useEffect, useRef, useState } from 'react';
-import { useHistory } from 'react-router';
+import { useNavigate  } from 'react-router-dom';
 import useAuth from '../../../../Hooks/useAuth';
 import Drawers from '../Drawers';
 
@@ -18,7 +18,7 @@ const Review = () => {
     }, []);
     const id = review.length;
 
-    const history = useHistory()
+    const navigate = useNavigate ()
     const refRating = useRef();
     const refReviews = useRef();
 
@@ -38,7 +38,7 @@ const Review = () => {
                     setReview(res.data);
                     console.log("review length", review.length);
                     alert("review added successfully");
-                    history.push("/");
+                    navigate("/");
                 }
             })
         e.preventDefault();

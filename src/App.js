@@ -1,5 +1,8 @@
 import {
-  BrowserRouter as Router, Route, Switch
+  // BrowserRouter as Router, Route, Switch
+  BrowserRouter,
+  Routes,
+  Route,
 } from "react-router-dom";
 import './App.css';
 import AuthProvider from "./contexts/AuthProvider";
@@ -26,59 +29,41 @@ function App() {
   return (
     <div>
       <AuthProvider>
-        <Router>
+        <BrowserRouter>
           <Navigation />
-          <Switch>
-            <Route exact path="/" component={HomePage} />
-            <Route exact path="/home" component={HomePage} />
-            <Route exact path="/login" component={Login} />
-            <Route exact path="/register" component={Register} />
-            <Route exact path="/movies" component={Movies} />
+          <Routes>
+            <Route path="/film/:filmId" element={<MovieDetails />} />
+            <Route path="/film/:filmId" element={<MovieDetails />} />
+            <Route path="/" element={<HomePage />} />
+            <Route path="/home" element={<HomePage />} />
+            <Route path="/login" element={<Login />} />
+            <Route path="/register" element={<Register />} />
+            <Route path="/movies" element={<Movies />} />
 
-            <PrivateRoute exact path="/dashboard">
-              <AdminPanel></AdminPanel>
-            </PrivateRoute>
+            <Route element={<PrivateRoute />}>
+              <Route path="/dashboard" element={<AdminPanel />} />
+              <Route path="/orders" element={<Orders />} />
+              <Route path="/reviews" element={<Review />} />
+              <Route path="/payment" element={<Payment />} />
+              <Route path="/payment/:orderId" element={<Payment />} />
+              <Route path="/film/:filmId" element={<MovieDetails />} />
+            </Route>
 
-            <PrivateRoute exact path="/orders">
-              <Orders></Orders>
-            </PrivateRoute>
 
-            <PrivateRoute exact path="/reviews">
-              <Review></Review>
-            </PrivateRoute>
+            <Route element={<AdminRoute />}>
+              <Route path="/makAdmin" element={<MakeAdmin />} />
+              <Route path="/addProduct" element={<AddAProduct />} />
+              <Route path="/allOrders" element={<ManageAll />} />
+              <Route path="/manageProduct" element={<DeleteProduct />} />
 
-         <PrivateRoute exact path="/payment">
-              <Payment></Payment>
-            </PrivateRoute>
 
-            <PrivateRoute exact path="/payment/:orderId">
-              <Payment></Payment>
-            </PrivateRoute>
+            </Route>
 
-            <PrivateRoute exact path="/film/:filmId">
-              <MovieDetails></MovieDetails>
-            </PrivateRoute>
 
-            <AdminRoute exact path="/makAdmin">
-              <MakeAdmin></MakeAdmin>
-            </AdminRoute>
-
-            <AdminRoute exact path="/addProduct">
-              <AddAProduct></AddAProduct>
-            </AdminRoute>
-
-            <AdminRoute exact path="/allOrders">
-              <ManageAll></ManageAll>
-            </AdminRoute>
-
-            <AdminRoute exact path="/manageProduct">
-              <DeleteProduct></DeleteProduct>
-            </AdminRoute>
-
-            <Route path="*" component={NotFound} /> 
-          </Switch>
+            <Route path="*" component={NotFound} />
+          </Routes>
           <Footer />
-        </Router>
+        </BrowserRouter>
       </AuthProvider>
     </div>
   );

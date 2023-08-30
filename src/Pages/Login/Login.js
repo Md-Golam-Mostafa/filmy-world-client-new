@@ -1,6 +1,6 @@
 import { Alert, Button, CircularProgress, Container, Grid, TextField, Typography } from '@mui/material';
 import React, { useState } from 'react';
-import { Link, useHistory, useLocation } from 'react-router-dom';
+import { Link, useNavigate, useLocation } from 'react-router-dom';
 import useAuth from '../../Hooks/useAuth';
 
 
@@ -9,7 +9,7 @@ const Login = () => {
     const {user, signInUser,isLoading,authError} = useAuth();
 
     const location = useLocation()
-    const history = useHistory();
+    const navigate = useNavigate();
 
     const handleChange = e =>{
         const field = e.target.name;
@@ -19,7 +19,7 @@ const Login = () => {
         setLoginData(newLoginData);
     }
     const handleSubmitLogin = e =>{
-        signInUser(loginData.email,loginData.password, location, history);
+        signInUser(loginData.email,loginData.password, location, navigate);
         e.preventDefault();
     }
     return (

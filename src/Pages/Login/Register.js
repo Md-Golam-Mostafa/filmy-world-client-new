@@ -1,6 +1,6 @@
 import { Alert, Button, CircularProgress, Container, Grid, TextField, Typography } from '@mui/material';
 import React, { useState } from 'react';
-import { Link, useHistory, useLocation } from 'react-router-dom';
+import { Link, useNavigate, useLocation } from 'react-router-dom';
 import useAuth from '../../Hooks/useAuth';
 
 
@@ -8,7 +8,7 @@ const Register = () => {
     const [loginData, setLoginData] = useState({});
     const { registerUser, isLoading, authError, user, googleSignIn } = useAuth();
     const location = useLocation();
-    const history = useHistory();
+    const navigate = useNavigate();
 
     // handle redirect URL 
 
@@ -17,7 +17,7 @@ const Register = () => {
 
         googleSignIn()
             .then(result => {
-                history.push(redirect_URL);
+                navigate(redirect_URL);
             })
     }
 
@@ -34,7 +34,7 @@ const Register = () => {
             alert("Password is not matched");
             return;
         }
-        registerUser(loginData.email, loginData.password, loginData.name, location, history);
+        registerUser(loginData.email, loginData.password, loginData.name, location, navigate);
         e.preventDefault();
     };
 

@@ -1,6 +1,6 @@
 import axios from 'axios';
 import React, { useEffect, useRef, useState } from 'react';
-import { useHistory, useParams } from 'react-router-dom';
+import { useNavigate , useParams } from 'react-router-dom';
 import useAuth from '../../../Hooks/useAuth';
 
 
@@ -12,7 +12,7 @@ const BookingForm = () => {
 
     const { name, price } = singleFilm;
 
-    const history = useHistory()
+    const navigate = useNavigate ()
 
     const { user } = useAuth();
 
@@ -45,7 +45,7 @@ const BookingForm = () => {
             .then(res => {
                 if (res.data.insertedId) {
                     alert("Order added successfully");
-                    history.push("/orders");
+                    navigate("/orders");
                 }
             })
         e.preventDefault();

@@ -1,6 +1,6 @@
 import React from 'react';
 import { Circle } from 'react-spinners-css';
-import { Redirect, Route } from 'react-router';
+import { Navigate , Route } from 'react-router';
 import useAuth from '../../../Hooks/useAuth';
 
 
@@ -12,12 +12,12 @@ const PrivateRoute = ({ children, ...rest }) => {
     return (
         <Route
             {...rest}
-            render={({ location }) => (user.displayName) ? children : <Redirect
+            render={({ location }) => (user.displayName) ? children : <Navigate 
                 to={{
                     pathname: "/login",
                     state: { from: location }
                 }}
-            ></Redirect>
+            ></Navigate>
 
             }
         >

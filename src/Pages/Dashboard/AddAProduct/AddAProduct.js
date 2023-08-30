@@ -1,9 +1,9 @@
 import axios from "axios";
 import React, { useRef } from "react";
-import { useHistory } from "react-router";
+import { useNavigate  } from "react-router-dom";
 import Drawers from "../Drawers/Drawers";
 const AddAProduct = () => {
-    const history = useHistory();
+    const navigate = useNavigate();
 
     const refName = useRef();
     const refImg = useRef();
@@ -70,7 +70,7 @@ const AddAProduct = () => {
             .then((res) => {
                 if (res.data.insertedId) {
                     alert("film Added Successfully");
-                    history.push("/movies");
+                    navigate("/movies");
                 }
             });
         e.preventDefault();

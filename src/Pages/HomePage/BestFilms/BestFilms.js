@@ -1,13 +1,13 @@
 import React from 'react';
-import { Link, useHistory } from 'react-router-dom';
+import { Link, useNavigate } from 'react-router-dom';
 
 const BestFilms = ({ nowShow }) => {
     const { _id, name, year, genre, price, img } = nowShow;
 
-    const history = useHistory();
+    const navigate = useNavigate();
 
     const handleDetails = () => {
-        history.push(`/film/${_id}`);
+        navigate(`/film/${_id}`);
     }
     return (
         <div className="col-lg-4 col-md-6 ">
